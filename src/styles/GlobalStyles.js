@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
@@ -27,10 +27,12 @@ const GlobalStyle = createGlobalStyle`
         display: block;
     }
     body {
+        display: flex;
+        justify-content: center;
         line-height: 1;
         width: 100%;
         height: 100%;
-        font-family: 'Lexend Deca', sans-serif;
+        font-family: 'Poppins', sans-serif;
     }
     ol, ul {
         list-style: none;
@@ -54,8 +56,11 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-        font-family: 'Lexend Deca', sans-serif;
+        font-family: 'Poppins', sans-serif;
     }
-`
+    button {
+        border: none;
+    }
+`;
 
-export default GlobalStyle
+export default GlobalStyle;
