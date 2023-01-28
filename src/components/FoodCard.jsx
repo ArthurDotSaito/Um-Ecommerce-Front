@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
 import star from "../assets/starIcon.svg";
+import { TRANSITION_DEFAULT } from "../constants/params";
 
 export default function FoodCard({ title, description, score, price, img }) {
   return (
-    <StyledFoodCard>
+    <StyledFoodCard img={img}>
       <div className="wrapper">
-        <img src={img} alt={title} />
+        <div className="img" />
 
-        <div>
+        <div className="content">
           <h2>{title}</h2>
           <p>{description}</p>
 
@@ -34,8 +35,19 @@ const StyledFoodCard = styled.div`
   padding-bottom: calc(0.128 * 100%);
   margin-right: 28px;
 
+  cursor: pointer;
+  transition: ${TRANSITION_DEFAULT};
+
   &:last-child {
     margin-right: 0px;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  .content {
+    width: 100%;
   }
 
   & > .wrapper {
@@ -47,13 +59,21 @@ const StyledFoodCard = styled.div`
 
     display: flex;
 
-    img {
+    .img {
       flex-shrink: 0;
       height: 100%;
       width: calc(0.261892584 * 100%);
       border-radius: 10px;
+
+      background: linear-gradient(
+          359.23deg,
+          rgba(0, 0, 0, 0.7) 0.74%,
+          rgba(0, 0, 0, 0.212344) 59.35%,
+          rgba(0, 0, 0, 0) 99.45%
+        ),
+        url(${(props) => props.img});
+      background-size: cover;
     }
-    //0,128 --> 78,2 ----> x --> 80
 
     div {
       display: flex;
@@ -110,6 +130,7 @@ const StyledFoodCard = styled.div`
           height: 24px;
 
           background: #fff2e5;
+          border: 1px solid #ffae00;
           border-radius: 5px;
 
           img {

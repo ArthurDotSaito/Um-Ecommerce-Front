@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import FoodCard from "../components/FoodCard";
+import Footer from "../components/Footer";
 import HeaderPage from "../components/HeaderPage";
 import PopularFoodCard from "../components/PopularFoodCard";
 import TitleCategory from "../components/TitleCategory";
@@ -81,34 +82,94 @@ export default function ProductsPage() {
       price: 52.9,
     },
   ];
+  const drinks = [
+    {
+      _id: "a1b2c3d4",
+      title: "Coca-Cola 2 litros",
+      description: "A famosa e icônica bebida gaseificada criada em 1886.",
+      price: 12.9,
+      score: 4.8,
+      img: "https://v5j9q4b5.rocketcdn.me/wp-content/uploads/2015/06/destaque17.jpg",
+      type: "drink",
+    },
+    {
+      _id: "e5f6g7h8",
+      title: "Fanta Laranja 2 litros",
+      description:
+        "Uma bebida gaseificada de sabor de laranja criada pela Coca-Cola em 1941.",
+      price: 7.9,
+      score: 4,
+      img: "https://static.clubeextra.com.br/img/uploads/1/522/24915522.jpg",
+      type: "drink",
+    },
+    {
+      _id: "i9j0k1l2",
+      title: "Sprite 2 litros",
+      description:
+        "Uma bebida gaseificada sabor limão adicionado criada pela Coca-Cola em 1961.",
+      price: 7.9,
+      score: 4.5,
+      img: "https://s2.glbimg.com/3hj73tEH8AozogZAuyn4r84FL5Q=/620x430/e.glbimg.com/og/ed/f/original/2022/08/25/imagem_hero_campanha_2.png",
+      type: "drink",
+    },
+    {
+      _id: "m3n4o5p6",
+      title: "Pepsi 2 litros",
+      description:
+        "Uma bebida gaseificada criada em 1893 e que é uma das principais concorrentes da Coca-Cola.",
+      price: 8.5,
+      score: 4.6,
+      img: "https://www.tricurioso.com/wp-content/uploads/2018/10/curiosidades-interessantes-sobre-a-pepsi.jpg",
+      type: "drink",
+    },
+    {
+      _id: "q7r8s9t0",
+      title: "Água mineral 1.5 litros",
+      description: "Uma água potável e mineralizada.",
+      price: 2.5,
+      score: 4.5,
+      img: "https://mambodelivery.vtexassets.com/arquivos/ids/184967/agua-mineral-sem-gas-minalba-15-litros.jpg?v=637884009104670000",
+      type: "drink",
+    },
+    {
+      _id: "u1v2w3x4",
+      title: "Suco de laranja 1 litro",
+      description:
+        "Um suco natural feito a partir da pressão de laranjas frescas. 100% natural, sem adição de açucares, sem conservantes e sem corantes.",
+      price: 8.5,
+      score: 4,
+      img: "https://www.sabornamesa.com.br/media/k2/items/cache/b018fd5ec8f1b90a1c8015900c2c2630_XL.jpg",
+      type: "drink",
+    },
+  ];
 
-  function getPizzasOptions() {
-    const numRows = Math.ceil(pizzas.length / 2);
+  function getRowsOptions(arr) {
+    const numRows = Math.ceil(arr.length / 2);
     const rows = [];
 
     for (let i = 0; i < numRows; i++) {
       const indexOne = 0 + i * 2;
       const indexTwo = 1 + i * 2;
 
-      if (!pizzas[indexOne] || !pizzas[indexTwo]) break;
+      if (!arr[indexOne] || !arr[indexTwo]) break;
 
       rows.push(
         <div className="row">
           <FoodCard
-            key={pizzas[indexOne]._id}
-            title={pizzas[indexOne].title}
-            description={pizzas[indexOne].description}
-            img={pizzas[indexOne].img}
-            price={pizzas[indexOne].price}
-            score={pizzas[indexOne].score}
+            key={arr[indexOne]._id}
+            title={arr[indexOne].title}
+            description={arr[indexOne].description}
+            img={arr[indexOne].img}
+            price={`R$ ${arr[indexOne].price.toFixed(2)}`}
+            score={arr[indexOne].score.toFixed(1)}
           />
           <FoodCard
-            key={pizzas[indexTwo]._id}
-            title={pizzas[indexTwo].title}
-            description={pizzas[indexTwo].description}
-            img={pizzas[indexTwo].img}
-            price={pizzas[indexTwo].price}
-            score={pizzas[indexTwo].score}
+            key={arr[indexTwo]._id}
+            title={arr[indexTwo].title}
+            description={arr[indexTwo].description}
+            img={arr[indexTwo].img}
+            price={`R$ ${arr[indexTwo].price.toFixed(2)}`}
+            score={arr[indexTwo].score.toFixed(1)}
           />
         </div>
       );
@@ -117,6 +178,7 @@ export default function ProductsPage() {
     console.log(rows);
     return rows;
   }
+
   return (
     <ProductPageStyle>
       <HeaderPage />
@@ -145,8 +207,18 @@ export default function ProductsPage() {
           <TitleCategory text="Pizzas" />
         </header>
 
-        <div className="pizzas__options">{getPizzasOptions()}</div>
+        <div className="pizzas__options">{getRowsOptions(pizzas)}</div>
       </section>
+
+      <section className="drinks">
+        <header>
+          <TitleCategory text="drinks" />
+        </header>
+
+        <div className="drinks__options">{getRowsOptions(drinks)}</div>
+      </section>
+
+      <Footer />
     </ProductPageStyle>
   );
 }
@@ -154,14 +226,11 @@ export default function ProductsPage() {
 const ProductPageStyle = styled.div`
   width: 1250px;
   padding-top: 32px;
+  padding-bottom: 100px;
 
   section > header > h2 {
     margin-top: 60px;
     margin-bottom: 24px;
-  }
-
-  .popular_pizzas {
-    width: 100%;
   }
 
   .popular_pizzas__options {
@@ -169,7 +238,9 @@ const ProductPageStyle = styled.div`
     width: 100%;
   }
 
-  .pizzas__options {
+  .pizzas__options,
+  .drinks__options,
+  .popular_pizzas {
     width: 100%;
   }
 
@@ -180,5 +251,9 @@ const ProductPageStyle = styled.div`
 
   .row:last-child {
     margin-bottom: 0;
+  }
+
+  footer {
+    margin-top: 150px;
   }
 `;
