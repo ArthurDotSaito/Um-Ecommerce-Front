@@ -1,8 +1,12 @@
 import React from "react";
-import { MainContainer, FieldArea, Input, Button, Image, FormContainer } from "./SignUpPageStyled";
+import { useNavigate } from "react-router-dom";
+import { MainContainer, FieldArea, Input, Button, logoContainer, FormContainer, HeaderContainer } from "./SignUpPageStyled";
 import ReactLoading from 'react-loading';
+import logo from '../../Assets/logo.jpg'
+import { registryRequest } from "../../API/registryRequest";
 
 const SignUpPage = () =>{
+    const navigate = useNavigate();
     const [signUpForm, setSignUpForm] = React.useState({ name: "", email: "", password:"", confirmPassword:""});
     const [enableButton, setEnableButton] = React.useState(false);
 
@@ -10,9 +14,34 @@ const SignUpPage = () =>{
         setSignUpForm({ ...signUpForm, [e.target.name]: e.target.value});
     }
 
+    function sendRegistryRequest(event){
+        event.preventDefault();
+        setEnableButton(true);
+        console.log("Entrei no registro!")
+        const passwordMatch = signUpForm.password === signUpForm.confirmPassword;
+        if(!passwordMatch){
+            alert("Senha e confirmação devem ser iguais.")
+            setEnableButton(false);
+        }else{
+            const registryPromise = registryRequest(signUpForm);
+            registryPromise.then((response) => {
+                setEnableButton(false);
+                navigate("/");
+            })
+            registryPromise.catch((response) =>{
+                alert(response.response.data.message);
+                setEnableButton(false);
+            })
+        }
+    }
+
     return(
         <MainContainer>
-            <FormContainer>
+            <HeaderContainer>
+                <img src={logo}></img>
+                <h2>FOOD</h2>
+            </HeaderContainer>
+            <FormContainer onSubmit={sendRegistryRequest}>
             <h1>Cadastro</h1>
             <h2>Por favor entre com seus dados</h2>
                 <FieldArea>
