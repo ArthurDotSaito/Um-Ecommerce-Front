@@ -6,15 +6,17 @@ import FoodCard from "../components/FoodCard";
 import Footer from "../components/Footer";
 import HeaderPage from "../components/HeaderPage";
 import PopularFoodCard from "../components/PopularFoodCard";
-import TitleCategory from "../components/TitleCategory";
 import { PacmanLoader } from "react-spinners";
 import { API_BASE_URL } from "../constants/params";
 import { PRIMARY_COLOR } from "../constants/colors";
+import ProductSection from "../components/ProductsSection";
+import ChoiceProduct from "../components/ChoiceProduct";
 
 export default function ProductsPage() {
   const [popularPizzas, setPopularPizzas] = useState();
   const [pizzas, setPizzas] = useState();
   const [drinks, setDrinks] = useState();
+  const [selectedProduct, setSelectedProduct] = useState();
 
   useEffect(() => {
     axios.get(API_BASE_URL + "/products").then((res) => {
@@ -48,6 +50,7 @@ export default function ProductsPage() {
             img={arr[indexOne].img}
             price={`R$ ${arr[indexOne].price.toFixed(2)}`}
             score={arr[indexOne].score.toFixed(1)}
+            onClick={() => setSelectedProduct(arr[indexOne])}
           />
           <FoodCard
             key={arr[indexTwo]._id}
@@ -56,6 +59,7 @@ export default function ProductsPage() {
             img={arr[indexTwo].img}
             price={`R$ ${arr[indexTwo].price.toFixed(2)}`}
             score={arr[indexTwo].score.toFixed(1)}
+            onClick={() => setSelectedProduct(arr[indexTwo])}
           />
         </div>
       );
@@ -74,42 +78,35 @@ export default function ProductsPage() {
 
   return (
     <ProductPageStyle>
+      {selectedProduct && (
+        <ChoiceProduct
+          product={selectedProduct}
+          closeFunction={() => setSelectedProduct(null)}
+        />
+      )}
       <HeaderPage />
 
-      <section className="popular_pizzas">
-        <header>
-          <TitleCategory text="Populares" />
-        </header>
+      <ProductSection title="Populares">
+        {popularPizzas.map((pizza) => {
+          return (
+            <PopularFoodCard
+              key={pizza._id}
+              img={pizza.img}
+              title={pizza.title}
+              score={pizza.score}
+              onClick={() => setSelectedProduct(pizza)}
+            />
+          );
+        })}
+      </ProductSection>
 
-        <div className="popular_pizzas__options">
-          {popularPizzas.map((pizza) => {
-            return (
-              <PopularFoodCard
-                key={pizza._id}
-                img={pizza.img}
-                title={pizza.title}
-                score={pizza.score}
-              />
-            );
-          })}
-        </div>
-      </section>
+      <ProductSection title="Pizzas" block>
+        {getRowsOptions(pizzas)}
+      </ProductSection>
 
-      <section className="pizzas">
-        <header>
-          <TitleCategory text="Pizzas" />
-        </header>
-
-        <div className="pizzas__options">{getRowsOptions(pizzas)}</div>
-      </section>
-
-      <section className="drinks">
-        <header>
-          <TitleCategory text="Bebidas" />
-        </header>
-
-        <div className="drinks__options">{getRowsOptions(drinks)}</div>
-      </section>
+      <ProductSection title="Bebidas" block>
+        {getRowsOptions(drinks)}
+      </ProductSection>
 
       <Footer />
     </ProductPageStyle>
@@ -129,22 +126,6 @@ const ProductPageStyle = styled.div`
   width: 1250px;
   padding-top: 32px;
   padding-bottom: 100px;
-
-  section > header > h2 {
-    margin-top: 60px;
-    margin-bottom: 24px;
-  }
-
-  .popular_pizzas__options {
-    display: flex;
-    width: 100%;
-  }
-
-  .pizzas__options,
-  .drinks__options,
-  .popular_pizzas {
-    width: 100%;
-  }
 
   .row {
     display: flex;
