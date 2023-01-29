@@ -5,8 +5,12 @@ import ProductsPage from "./pages/ProductsPage";
 import Login from "./pages/Login";
 import Authcontext from "./contexts/Authcontext";
 import { useState } from "react";
+import Carshop from "./pages/Carrinho";
 
 function App() {
+
+  const [token,SetToken] = useState("")
+  
   return (
     <Authcontext.Provider value={{ token, SetToken }}>
       <BrowserRouter>
@@ -14,6 +18,7 @@ function App() {
           <Route path="/cadastro" element={<SignUpPage />} />
           <Route path="/home" element={<ProductsPage />} />
           <Route path="/" element={<Login />} />
+          <Route path="/carrinho" element={<Carshop />} />
         </Routes>
       </BrowserRouter>
     </Authcontext.Provider>
