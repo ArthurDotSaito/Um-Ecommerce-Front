@@ -1,4 +1,4 @@
-import Login from "./Login";
+import Login from "./pages/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Authcontext from "./contexts/Authcontext";
 import { useState } from "react";

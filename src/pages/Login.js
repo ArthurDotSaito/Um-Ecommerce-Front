@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { useContext, useState } from "react";
 import axios from 'axios'
-import imagebackground from './images/pizza.png'
+import imagebackground from '../assets/pizza.png'
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
-import logo from './images/Logo.png'
+import logo from '../assets/Logo.png'
 
 export default function Login() {
 
@@ -31,7 +31,7 @@ export default function Login() {
                     <Button onClick={SignIn}>Login</Button>
                     <TextBox>
                         <SignUp>Não possui uma conta?</SignUp>
-                        <Link to="/">
+                        <Link to="/home">
                             <SignUp>Cadastre-se de graça</SignUp>
                         </Link>
                     </TextBox>
@@ -43,6 +43,15 @@ export default function Login() {
     );
     
     function SignIn(e){
+        e.preventDefault();
+
+        const dados = {
+            email,
+            password
+          }
+
+        const url_post = `http://localhost:5000/`
+        const promise = axios.post(url_post, dados)
         alert("deu certo");
     }
 
