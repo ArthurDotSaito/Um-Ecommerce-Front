@@ -28,7 +28,7 @@ export default function Login() {
                         <Input type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} required></Input>
                     </Data>
                     <Line></Line>
-                    <Button>Login</Button>
+                    <Button onClick={SignIn}>Login</Button>
                     <TextBox>
                         <SignUp>Não possui uma conta?</SignUp>
                         <Link to="/">
@@ -40,34 +40,40 @@ export default function Login() {
             </SideMenu>
         </Body>
 
-    )
+    );
+    
+    function SignIn(e){
+        alert("deu certo");
+    }
+
 }
 
 
 
 
 const Body = styled.div`
-min-height: 1000px;
+min-height: 100vh;
 display:flex;
 justify-content: flex-end;
 background-image: url(${imagebackground});
 background-size: cover;
 font-family: 'Poppins', sans-serif;
+background-position: center;
 `
 
 const SideMenu = styled.div`
-min-height: 1000px;
+min-height: 100vh;
 width:50%;
 background: rgba(255, 255, 255, 0.39);
-filter: blur(50px);
 display:flex;
 justify-content: center;
+backdrop-filter: blur(30px);
 `
 
 const MenuBox = styled.div`
-min-height: 1000px;
+min-height: 100vh;
 width:70%;
-background: purple;
+z-index: 2;
 `
 
 const Logo = styled.img`
