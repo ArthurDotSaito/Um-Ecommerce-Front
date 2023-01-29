@@ -3,9 +3,16 @@ import styled from "styled-components";
 import star from "../assets/starIcon.svg";
 import { TRANSITION_DEFAULT } from "../constants/params";
 
-export default function FoodCard({ title, description, score, price, img }) {
+export default function FoodCard({
+  title,
+  description,
+  score,
+  price,
+  img,
+  onClick,
+}) {
   return (
-    <StyledFoodCard img={img}>
+    <StyledFoodCard img={img} onClick={onClick}>
       <div className="wrapper">
         <div className="img" />
 
