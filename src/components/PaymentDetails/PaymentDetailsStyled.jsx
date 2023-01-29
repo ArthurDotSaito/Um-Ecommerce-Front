@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const PaymentMainContainer = styled.main`
-    width: 100%;
+    width: 90%;
     height: 100vh;
     display: flex;
     flex-direction: column;
