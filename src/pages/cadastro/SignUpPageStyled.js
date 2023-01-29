@@ -128,22 +128,22 @@ export const Input = styled.input`
 `
 
 export const Button = styled.button`
-width: 80%;
-height: 45px;
-background: #EB5757;
-font-family: 'Poppins', sans-serif;
-font-size: 21px;
-line-height: 26px;
-font-weight: 500;
-border: none;
-border-radius: 6px;
-text-align: center;
-color: #FFFFFF;
-display: flex;
-justify-content: center;
-align-items: center;
-margin: 20px 0px 20px 0px;
-cursor: pointer;
+    width: 100%;
+    height: 45px;
+    background: #EB5757;
+    font-family: 'Poppins', sans-serif;
+    font-size: 21px;
+    line-height: 26px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    text-align: center;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px 20px 0px;
+    cursor: pointer;
 `
 export const SignUp = styled.p`
     font-family: 'Raleway', sans-serif;
