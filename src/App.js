@@ -1,24 +1,24 @@
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SignUpPage from "./pages/cadastro/SignUpPage";
+import ProductsPage from "./pages/ProductsPage";
 import Login from "./pages/Login";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Authcontext from "./contexts/Authcontext";
 import { useState } from "react";
-import styled from "styled-components";
 
-export default function App() {
+function App() {
+  return (
+    <Authcontext.Provider value={{ token, SetToken }}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/cadastro" element={<SignUpPage />} />
+          <Route path="/home" element={<ProductsPage />} />
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    </Authcontext.Provider>
+  );
+}
 
-  const [token,SetToken] = useState("")
+export default App;
 
-    return (
-      <Authcontext.Provider value={{token,SetToken}}>
-        <BrowserRouter>
-          <div>
-            <Routes>
-              <Route path="/" element={<Login />}></Route>
-            </Routes>
-  
-          </div>
-        </BrowserRouter>
-      </Authcontext.Provider>
-    );
-  }
-  
