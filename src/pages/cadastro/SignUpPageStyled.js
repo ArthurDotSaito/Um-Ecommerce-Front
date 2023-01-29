@@ -2,7 +2,6 @@ import styled from "styled-components"
 import pizzaImage from '../../assets/pizza-max-size.jpg'
 
 export const MainContainer = styled.main`
-    position: relative;
     &::before{
         content: '';
         background-image: url(${pizzaImage});
@@ -95,7 +94,7 @@ export const FormContainer = styled.section`
 `
 
 export const FieldArea = styled.form`
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
