@@ -2,6 +2,7 @@ import { useState } from "react";
 import React from "react";
 import { OrderContainer,OrderItemsContainer } from "./OrderDetailsStyled";
 import { OrderItem } from "../OrderItem/OrderItem";
+import { OrderBalance } from "../OrderBalance/OrderBalance";
 
 const mock = [
     {
@@ -49,7 +50,7 @@ const mock = [
                             key={index}>
                         </OrderItem>)}
                 </OrderItemsContainer>
-                {/* <WalletBalance registerData={mock}></WalletBalance> */}
+                <OrderBalance orderData={mock}></OrderBalance>
             </>} 
         </OrderContainer>
     ) 
