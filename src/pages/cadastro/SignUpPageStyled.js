@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import pizzaImage from '../../Assets/pizza-max-size.jpg'
+import pizzaImage from '../../assets/pizza-max-size.jpg'
 
 export const MainContainer = styled.main`
     position: relative;
