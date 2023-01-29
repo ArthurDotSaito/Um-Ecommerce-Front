@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { MainContainer, FieldArea, Input, Button, logoContainer, FormContainer, HeaderContainer } from "./SignUpPageStyled";
+import { MainContainer, FieldArea, Input, Button, FormContainer, HeaderContainer } from "./SignUpPageStyled";
 import ReactLoading from 'react-loading';
-import logo from '../../Assets/logo.jpg'
+import logo from '../../assets/logo.jpg'
 import { registryRequest } from "../../API/registryRequest";
 
 const SignUpPage = () =>{
@@ -38,7 +38,7 @@ const SignUpPage = () =>{
     return(
         <MainContainer>
             <HeaderContainer>
-                <img src={logo}></img>
+                <img src={logo} alt="Logo Food"></img>
                 <h2>FOOD</h2>
             </HeaderContainer>
             <FormContainer onSubmit={sendRegistryRequest}>

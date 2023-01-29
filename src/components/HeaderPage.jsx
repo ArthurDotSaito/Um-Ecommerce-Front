@@ -9,14 +9,16 @@ import { TRANSITION_DEFAULT } from "../constants/params";
 export default function HeaderPage() {
   return (
     <StyledHeaderPage>
-      <Link className="logo">
+      <Link className="logo" to="#">
         <img src={logo} alt="Logo food" />
       </Link>
 
       <nav>
-        <Link>Por quê Food</Link>
-        <Link className="selected">Menu</Link>
-        <Link>Contato</Link>
+        <Link to="#">Por quê Food</Link>
+        <Link className="selected" to="#">
+          Menu
+        </Link>
+        <Link to="#">Contato</Link>
       </nav>
 
       <div>
