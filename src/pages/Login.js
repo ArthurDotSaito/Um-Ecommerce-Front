@@ -5,12 +5,14 @@ import imagebackground from '../assets/pizza.png'
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
 import logo from '../assets/Logo.png'
+import Authcontext from "../contexts/Authcontext";
 
 export default function Login() {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
+    const {SetToken} = useContext(Authcontext)
 
     return (
 
@@ -41,17 +43,29 @@ export default function Login() {
         </Body>
 
     );
-    
-    function SignIn(e){
+
+    function SignIn(e) {
         e.preventDefault();
 
         const dados = {
             email,
             password
-          }
+        }
 
-        const url_post = `http://localhost:5000/`
-        const promise = axios.post(url_post, dados)
+        const promise = axios.post(`${process.env.REACT_APP_API_URL}/`, dados)
+
+
+        promise.then(resposta => {
+            console.log(resposta.data)
+            SetToken(resposta.data)
+            navigate("/home")
+        })
+
+        promise.catch(err => {
+            console.log(err)
+            alert("Deu erro tente novamente")
+        })
+
         alert("deu certo");
     }
 
@@ -143,7 +157,7 @@ color:#FFFFFF;
 font-size:16px;
 margin-left:5px;`
 
-const TextBox= styled.div`
+const TextBox = styled.div`
 display:flex;
 justify-content:center;
 :link{

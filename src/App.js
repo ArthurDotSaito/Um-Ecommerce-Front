@@ -6,8 +6,10 @@ import styled from "styled-components";
 
 export default function App() {
 
+  const [token,SetToken] = useState("")
+
     return (
-      <Authcontext.Provider>
+      <Authcontext.Provider value={{token,SetToken}}>
         <BrowserRouter>
           <div>
             <Routes>
