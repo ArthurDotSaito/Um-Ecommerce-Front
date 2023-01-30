@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import logo from '../assets/Logo.png'
 import Authcontext from "../contexts/Authcontext";
 import HeaderPage from "./../components/HeaderPage";
-import Lista from "./ItensLista";
+import Lista from "../components/ItensLista";
 
 export default function Carshop(){
     return (

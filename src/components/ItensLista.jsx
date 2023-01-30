@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import React from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { RiseLoader } from "react-spinners";
+import { Link } from "react-router-dom";
 
 export default function Lista(){
     const [productsArray, setProductsArray] = React.useState([]);
@@ -54,8 +56,12 @@ export default function Lista(){
                 <Valor>Valor</Valor>
                 <Total>Total</Total>
             </Cabecalho>
-            {productsArray.length === 0 ? 
-            <p>Não há registros de pedidos</p> :
+            {productsArray.length === 0 ? <Noproducts>
+            <p>Não há registros de pedidos</p>
+            <Link to="/home">
+            <Voltar>Voltar</Voltar>
+            </Link>
+            </Noproducts>:
             <>
                 
                     {productsArray.map((element, index) =>
@@ -65,23 +71,57 @@ export default function Lista(){
                        <Quantidade>{cartArray[index].quantity}</Quantidade>
                        <Valor>{element.price}</Valor>
                        <Total>{Number(cartArray[index].quantity)*Number(element.price)}</Total>
-                       <Icon onClick={() => Teste(cartArray[index].idProduct)}>X</Icon>
+                       <Icon onClick={() => Remove(cartArray[index].idProduct)}>X</Icon>
                        </Itens> )}
 
                        <Soma> O total é de R$ {somatotal}</Soma>
+                       <Link to="/checkout">
                        <Button>Confirmar pedido</Button>
+                       </Link>
                 
             </>} 
             </Boxproducts>
 
       )
 
-      function Teste(item) {
-        console.log(item);
+      function Remove(item) {
+        let cart = JSON.parse(localStorage.getItem("cart"));
+
+        const findedSearch = cart.find(
+            (order) => order.idProduct === item
+          );
+
+        if(findedSearch){
+            const index = cart.indexOf(findedSearch);
+            cart.splice(index,1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+
+        document.location.reload(true);
       }
 
      
 }
+const Noproducts = styled.div`
+ display:flex;
+    width:70%;
+    font-size: 15px;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    p{
+        margin-top:20px;
+    }`
+
+const Voltar = styled.button`
+background-color:#EB5757;
+border-radius:50px;
+font-size:15px;
+color:white;
+margin-top:30px;
+padding: 0px 100px;
+height: 49px;
+width:100%;`
 
 const Soma = styled.div`
 margin-top: 30px;
@@ -104,7 +144,8 @@ font-size:20px;
 color:white;
 margin-top:30px;
 height: 49px;
-width:30%;
+width:100%;
+padding: 0px 100px;
 `
 
 const Itens = styled.div`
