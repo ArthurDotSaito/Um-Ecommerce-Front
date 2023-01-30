@@ -38,7 +38,7 @@ export const MainContainer = styled.main`
     }
     p{
         width: 100%;
-        font-family: "Lexend Deca", sans-serif;
+        font-family: "Poppins", sans-serif;
         font-weight: 400;
         font-size: 14px;
         line-height: 18px;

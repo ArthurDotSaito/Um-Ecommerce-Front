@@ -14,7 +14,7 @@ export default function HeaderPage() {
       </Link>
 
       <nav>
-        <Link to="#">Por quê Food</Link>
+        <Link to="/carrinho">Carrinho</Link>
         <Link className="selected" to="#">
           Menu
         </Link>
