@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import axios from 'axios'
 import imagebackground from '../assets/pizza.png'
 import { Link } from "react-router-dom";
@@ -12,154 +12,87 @@ export default function Carshop() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
-    const {SetToken} = useContext(Authcontext)
+    const { SetToken } = useContext(Authcontext)
+    const [products, setProducts] = useState(JSON.parse(localStorage.getItem("cart")))
+    const [produto, setProduto] = useState([]);
 
-    return (
+    const [nome, setNome] = useState([]);
 
-        <Body>
-            <SideMenu>
-                <MenuBox>
-                    <Logo src={logo}></Logo>
-                    <Title>Login</Title>
-                    <Text>Por favor, entre com seus dados.</Text>
-                    <Data>
-                        <Input type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} required></Input>
-                    </Data>
-                    <Line></Line>
-                    <Data>
-                        <Input type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} required></Input>
-                    </Data>
-                    <Line></Line>
-                    <Button onClick={SignIn}>Login</Button>
-                    <TextBox>
-                        <SignUp>Não possui uma conta?</SignUp>
-                        <Link to="/home">
-                            <SignUp>Cadastre-se de graça</SignUp>
-                        </Link>
-                    </TextBox>
-
-                </MenuBox>
-            </SideMenu>
-        </Body>
-
-    );
-
-    function SignIn(e) {
-        e.preventDefault();
-
-        const dados = {
-            email,
-            password
-        }
-
-        const promise = axios.post(`${process.env.REACT_APP_API_URL}/`, dados)
-
-
-        promise.then(resposta => {
-            console.log(resposta.data)
-            SetToken(resposta.data)
-            navigate("/home")
-        })
-
-        promise.catch(err => {
-            console.log(err)
-            alert("Deu erro tente novamente")
-        })
-
-        alert("deu certo");
-    }
+    return (Printarvalor(products));
 
 }
 
+function Printarvalor(valores) {
+    const [title, setTitle] = useState([])
+    const [valor, setValor] = useState([]);
+    let titulo = [...title];
+    let preco = [...valor];
+
+    console.log(valores);
+    variaveis();
+
+    function variaveis(){
+        valores.map(movimentacao => (Pegarnome(movimentacao.idProduct)))
+    }
+
+    return (<Body>
+
+        {valores.map((movimentacao, i) => (
+
+            <Linha>
+                <Nome>{title[i]}</Nome>
+                <Custo>{valor[i]}</Custo>
+                <Quantidade>{movimentacao.quantity}</Quantidade>
+                <Total>{Number(valor[i])*Number(movimentacao.quantity)}</Total>
+                <Nome>Osasco</Nome>
+            </Linha>))}
+    </Body>
+    )
 
 
+
+    function Pegarnome(nome) {
+
+
+        useEffect(() => {
+
+            const promise = axios.get((`${process.env.REACT_APP_API_URL}/products/${nome}`))
+
+            promise.then(resposta => {
+                preco.push(resposta.data.price)
+                titulo.push(resposta.data.title)
+                setTitle(titulo);
+                setValor(preco);
+            })
+
+            promise.catch(err => {
+                console.log(err.response.data)
+                alert("Deu erro tente novamente")
+            })
+        }, []
+        )
+    }
+}
+
+
+const Linha = styled.div`
+color:fuchsia;
+font-size: 40px;
+display:flex;
+width:1000px;
+`
+
+const Total = styled.div``
+
+const Nome = styled.div``
+
+const Custo = styled.div``
+
+const Quantidade = styled.div``
 
 const Body = styled.div`
 min-height: 100vh;
-display:flex;
-justify-content: flex-end;
-background-image: url(${imagebackground});
-background-size: cover;
+background-color:lightgrey;
 font-family: 'Poppins', sans-serif;
 background-position: center;
 `
-
-const SideMenu = styled.div`
-min-height: 100vh;
-width:50%;
-background: rgba(255, 255, 255, 0.39);
-display:flex;
-justify-content: center;
-backdrop-filter: blur(30px);
-`
-
-const MenuBox = styled.div`
-min-height: 100vh;
-width:70%;
-z-index: 2;
-`
-
-const Logo = styled.img`
-margin-top: 70px;
-`
-
-const Title = styled.h1`
-font-size:36px;
-line-height:56px;
-font-style:Bold;
-color:#FFFFFF;
-margin-top:100px;`
-
-const Text = styled.p`
-font-size:20px;
-line-height:30px;
-color:#FFFFFF;
-margin-bottom:100px;`
-
-const Data = styled.div``
-
-const Input = styled.input`
-font-size: 20px;
-line-height: 30px;
-color:#FFFFFF;
-border:none;
-background-color: transparent;
-
-::placeholder{
-color:#FFFFFF;
-font-size: 20px;
-line-height: 30px;   
-}
-`
-const Line = styled.div`
-height:1px;
-background-color:#FFFFFF;
-margin-bottom:15px;`
-
-const Button = styled.button`
-display:flex;
-align-items: center;
-justify-content: center;
-width:100%;
-height:63px;
-border:none;
-border-radius: 6px;
-text-align: center;
-background-color: #EB5757;
-color:#FFFFFF;
-font-size: 18px;
-line-height: 22.4px;
-margin-bottom: 15px;
-`
-
-const SignUp = styled.p`
-color:#FFFFFF;
-font-size:16px;
-margin-left:5px;`
-
-const TextBox = styled.div`
-display:flex;
-justify-content:center;
-:link{
-    text-decoration: none;
-}`
