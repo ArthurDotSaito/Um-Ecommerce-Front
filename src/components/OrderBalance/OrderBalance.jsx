@@ -8,7 +8,7 @@ export const OrderBalance = ({orderData}) =>{
     useEffect(() => {
         let sum = 0
         const totalValue = orderData.map((element) =>{
-            sum += element.value
+            sum += element.price
         },0)
         setTotal(sum)
     },[])
