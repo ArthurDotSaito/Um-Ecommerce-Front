@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
 import "animate.css";
-
 import { SECONDARY_FONT_COLOR, PRIMARY_COLOR } from "../constants/colors";
 import { TRANSITION_DEFAULT } from "../constants/params";
 import Score from "./Score";

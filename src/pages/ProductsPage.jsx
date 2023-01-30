@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 import styled from "styled-components";
 import FoodCard from "../components/FoodCard";
 import Footer from "../components/Footer";
@@ -19,7 +18,7 @@ export default function ProductsPage() {
   const [selectedProduct, setSelectedProduct] = useState();
 
   useEffect(() => {
-    axios.get(API_BASE_URL + "/products").then((res) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/products`).then((res) => {
       const products = res.data;
       const pizzas = products.filter((product) => product.category === "pizza");
       const popularPizzas = pizzas.filter((_, index) => index < 4);
