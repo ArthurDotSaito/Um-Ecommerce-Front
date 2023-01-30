@@ -38,7 +38,7 @@ export const MainContainer = styled.main`
     }
     p{
         width: 100%;
-        font-family: "Lexend Deca", sans-serif;
+        font-family: "Poppins", sans-serif;
         font-weight: 400;
         font-size: 14px;
         line-height: 18px;
@@ -94,7 +94,7 @@ export const FormContainer = styled.section`
 `
 
 export const FieldArea = styled.form`
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -128,22 +128,22 @@ export const Input = styled.input`
 `
 
 export const Button = styled.button`
-width: 80%;
-height: 45px;
-background: #EB5757;
-font-family: 'Poppins', sans-serif;
-font-size: 21px;
-line-height: 26px;
-font-weight: 500;
-border: none;
-border-radius: 6px;
-text-align: center;
-color: #FFFFFF;
-display: flex;
-justify-content: center;
-align-items: center;
-margin: 20px 0px 20px 0px;
-cursor: pointer;
+    width: 100%;
+    height: 45px;
+    background: #EB5757;
+    font-family: 'Poppins', sans-serif;
+    font-size: 21px;
+    line-height: 26px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    text-align: center;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px 20px 0px;
+    cursor: pointer;
 `
 export const SignUp = styled.p`
     font-family: 'Raleway', sans-serif;
