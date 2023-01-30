@@ -21,10 +21,11 @@ export default function Carshop(){
 }
 
 const Body = styled.main`
-    width: 100vw;
+    padding-top:32px;
+    width: 1250px;
     height: 100vh;
     font-family: 'Poppins', sans-serif;
-    padding: 1rem 1rem 1rem 1rem;
+    
 `
 
 const Produtos = styled.div``

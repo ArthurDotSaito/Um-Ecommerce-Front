@@ -22,7 +22,8 @@ export default function Login() {
                     <Logo src={logo}></Logo>
                     <Title>Login</Title>
                     <Text>Por favor, entre com seus dados.</Text>
-                    <Data>
+                    <Form onSubmit={SignIn}>
+                    <Data >
                         <Input type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} required></Input>
                     </Data>
                     <Line></Line>
@@ -30,7 +31,8 @@ export default function Login() {
                         <Input type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} required></Input>
                     </Data>
                     <Line></Line>
-                    <Button onClick={SignIn}>Login</Button>
+                    <Button type="submit">Login</Button>
+                    </Form>
                     <TextBox>
                         <SignUp>Não possui uma conta?</SignUp>
                         <Link to="/cadastro">
@@ -66,16 +68,17 @@ export default function Login() {
             alert("Deu erro tente novamente")
         })
 
-        alert("deu certo");
+        
     }
 
 }
 
 
-
+const Form = styled.form``
 
 const Body = styled.div`
 min-height: 100vh;
+width:100vw;
 display:flex;
 justify-content: flex-end;
 background-image: url(${imagebackground});
@@ -119,6 +122,7 @@ margin-bottom:100px;`
 const Data = styled.div``
 
 const Input = styled.input`
+width:100%;
 font-size: 20px;
 line-height: 30px;
 color:#FFFFFF;

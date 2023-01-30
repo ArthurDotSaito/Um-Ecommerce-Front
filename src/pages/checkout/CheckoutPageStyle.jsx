@@ -4,7 +4,7 @@ export const CheckoutMainContainer = styled.main`
     width: 100vw;
     height: 100vh;
     font-family: 'Poppins', sans-serif;
-    padding: 1rem 1rem 1rem 1rem;
+    padding: 32px 1rem 1rem 1rem;
 ` 
 
 export const OrderAndPaymentContainer = styled.section`
