@@ -1,13 +1,11 @@
 import { useState,useEffect } from "react";
-import { PaymentMainContainer, PaymentForm, Input, PaymentSelect, PaymentButon } from "./PaymentDetailsStyled";
+import { PaymentMainContainer, PaymentForm, Input, PaymentSelect, PaymentButon, Confirmaton } from "./PaymentDetailsStyled";
 import React from "react";
 import axios from "axios";
 import { postCheckout } from "../../API/postCheckout";
 
 const PaymentDetails = (props) =>{
-    const [productsArray, setProductsArray] = React.useState([]);
     const {formData} = props;
-
     console.log(formData)
 
     let cart = localStorage.getItem('cart');
@@ -26,7 +24,7 @@ const PaymentDetails = (props) =>{
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/${idProdutos[i]}`);
             tempProductsArray.push(response.data);
           }
-          setProductsArray(tempProductsArray);
+          props.setProductsArray(tempProductsArray);
         } catch (error) {
           console.log("Falhei no GETProducts")
           console.log(error);
@@ -51,6 +49,7 @@ const PaymentDetails = (props) =>{
             console.log(error)
             console.log("Erro ao realizar o submit!")
           })
+          props.setConfirmation(true);
       }
 
     return(
