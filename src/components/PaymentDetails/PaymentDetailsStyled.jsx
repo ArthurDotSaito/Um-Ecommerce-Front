@@ -29,7 +29,7 @@ export const Input = styled.input`
     font-family: 'Poppins', cursive;
     font-size: 20px;
     font-family: 400;
-    color:#FFFFFF;
+    color: black;
     box-sizing: border-box;
     margin-top:1rem;
     width: 100%;

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import { BalanceOrderContainer, Value } from "./OrderBalanceStyled.jsx"
 
-export const OrderBalance = ({orderData}) =>{
+export const OrderBalance = ({orderData, setFormData}) =>{
     const [total, setTotal] = useState(0)
+    const {setForm} = setFormData
     console.log(orderData)
+    console.log(setFormData)
 
     useEffect(() => {
         let sum = 0
@@ -11,6 +13,7 @@ export const OrderBalance = ({orderData}) =>{
             sum += element.price
         },0)
         setTotal(sum)
+        setFormData.totalValue = sum;
     },[])
 
     return(

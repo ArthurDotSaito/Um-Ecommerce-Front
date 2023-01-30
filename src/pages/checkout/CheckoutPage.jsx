@@ -7,7 +7,7 @@ import {PaymentMainContainer, CheckoutMainContainer, OrderDetailsContainer, Orde
 
 const CheckoutPage = () =>{
     const navigate = useNavigate();
-    const [isLoading, setIsloading] = React.useState(false);
+    const [formData, setFormData] = React.useState({name: '', address: '', paymentMethod: '', products:[], totalValue:''});
 
 
     return(
@@ -15,11 +15,11 @@ const CheckoutPage = () =>{
             <HeaderPage></HeaderPage>
             <OrderAndPaymentContainer>
                 <OrderDetailsContainer>
-                    <OrderDetails>
+                    <OrderDetails formData={formData} setFormData={setFormData}>
                     </OrderDetails>
                 </OrderDetailsContainer>
                 <PaymentMainContainer>
-                    <PaymentDetails>
+                    <PaymentDetails formData={formData} setFormData={setFormData}>
                     </PaymentDetails>
                 </PaymentMainContainer>
             </OrderAndPaymentContainer>

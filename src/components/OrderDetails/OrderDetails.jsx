@@ -5,13 +5,15 @@ import { OrderItem } from "../OrderItem/OrderItem";
 import { OrderBalance } from "../OrderBalance/OrderBalance";
 import axios from "axios";
 
-  const OrderDetails = () =>{
+  const OrderDetails = (props) =>{
     const [isLoading, setIsLoading] = React.useState(false);
     const [productsArray, setProductsArray] = React.useState([]);
+    const {formData} = props;
    
     let cart = localStorage.getItem('cart');
     let cartArray = JSON.parse(cart);
     let idProdutos = [];
+
     for(let i=0; i < cartArray.length; i++){
         idProdutos.push(cartArray[i].idProduct);
     }
@@ -20,14 +22,17 @@ import axios from "axios";
     useEffect(() => {
       const fetchData = async () => {
         try {
-          let tempProductsArray = []
+          let tempProductsArray = [];
+          let products = []
           for(let i = 0; i < idProdutos.length; i++) {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/${idProdutos[i]}`);
             tempProductsArray.push(response.data);
+            products.push(response.data.title);
           }
+          formData.products = products;
           setProductsArray(tempProductsArray);
         } catch (error) {
-          console.log("Falhei no GETPROducts")
+          console.log("Falhei no GETProducts")
           console.log(error);
         }
       };
@@ -50,7 +55,7 @@ import axios from "axios";
                             key={index}>
                         </OrderItem>)}
                 </OrderItemsContainer>
-                <OrderBalance orderData={productsArray}></OrderBalance>
+                <OrderBalance orderData={productsArray} setFormData = {formData}></OrderBalance>
             </>} 
         </OrderContainer>
     ) 
