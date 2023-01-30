@@ -33,7 +33,7 @@ export default function Login() {
                     <Button onClick={SignIn}>Login</Button>
                     <TextBox>
                         <SignUp>Não possui uma conta?</SignUp>
-                        <Link to="/home">
+                        <Link to="/cadastro">
                             <SignUp>Cadastre-se de graça</SignUp>
                         </Link>
                     </TextBox>

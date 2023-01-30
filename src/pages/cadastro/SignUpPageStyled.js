@@ -2,7 +2,6 @@ import styled from "styled-components"
 import pizzaImage from '../../assets/pizza-max-size.jpg'
 
 export const MainContainer = styled.main`
-    position: relative;
     &::before{
         content: '';
         background-image: url(${pizzaImage});
