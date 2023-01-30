@@ -18,7 +18,7 @@ function App() {
           <Route path="/cadastro" element={<SignUpPage />} />
           <Route path="/home" element={<ProductsPage />} />
           <Route path="/" element={<Login />} />
-          <Route path="/carrinhos" element={<Carshop />} />
+          <Route path="/carrinho" element={<Carshop />} />
         </Routes>
       </BrowserRouter>
     </Authcontext.Provider>

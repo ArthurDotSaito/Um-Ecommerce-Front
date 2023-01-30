@@ -7,30 +7,14 @@ import { useNavigate } from 'react-router-dom'
 import logo from '../assets/Logo.png'
 import Authcontext from "../contexts/Authcontext";
 import HeaderPage from "./../components/HeaderPage";
-import Lista from "./ListaItens";
+import Lista from "./ItensLista";
 
 export default function Carshop(){
     return (
         <Body>
              <HeaderPage></HeaderPage>
-            <Produtos>
-                
-                <Boxproducts>
-                <h1>Confira seus itens:</h1>
-                    <Cabecalho>
-                        <Nome>Item</Nome>
-                        <Quantidade>Qtde</Quantidade>
-                        <Valor>Valor</Valor>
-                        <Total>Total</Total>
-                    </Cabecalho>
-                    <Itens>
-                        <Lista></Lista>
-                        <Nome>Suco de Laranja</Nome>
-                        <Quantidade>1</Quantidade>
-                        <Valor>3.9</Valor>
-                        <Total>7.8</Total>
-                    </Itens>
-                </Boxproducts>
+            <Produtos>                
+                <Lista></Lista>
             </Produtos>
         </Body>
     )
