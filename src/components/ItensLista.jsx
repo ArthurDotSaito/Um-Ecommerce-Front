@@ -176,7 +176,7 @@ align-items:center;
 flex-direction:column;
 h1{
     font-size: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 margin-top:80px;`
 
@@ -184,5 +184,5 @@ const Cabecalho= styled.div`
     display:flex;
     width:70%;
     font-size: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 50px;
 `

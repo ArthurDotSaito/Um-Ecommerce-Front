@@ -9,23 +9,29 @@ import { TRANSITION_DEFAULT } from "../constants/params";
 export default function HeaderPage() {
   return (
     <StyledHeaderPage>
-      <Link className="logo" to="#">
+      <nav>
+      <Link className="logo" to="/home">
         <img src={logo} alt="Logo food" />
       </Link>
+      </nav>
 
       <nav>
         <Link to="/carrinho">Carrinho</Link>
-        <Link className="selected" to="#">
+        <Link className="selected" to="/home">
           Menu
         </Link>
-        <Link to="#">Contato</Link>
+        <Link to="/checkout">Checkout</Link>
       </nav>
 
       <div>
+      <nav>
+      <Link to="/">
         <button>
           <IonIcon name="log-out-outline" color={"white"} size={14} />
           Sair
         </button>
+        </Link>
+        </nav>
       </div>
     </StyledHeaderPage>
   );
