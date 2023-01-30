@@ -5,7 +5,7 @@ import ProductsPage from "./pages/ProductsPage";
 import Login from "./pages/Login";
 import Authcontext from "./contexts/Authcontext";
 import { useState } from "react";
-import Carshop from "./pages/Carrinho";
+import Carshop from "./pages/Carrinhos";
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
           <Route path="/cadastro" element={<SignUpPage />} />
           <Route path="/home" element={<ProductsPage />} />
           <Route path="/" element={<Login />} />
-          <Route path="/carrinho" element={<Carshop />} />
+          <Route path="/carrinhos" element={<Carshop />} />
         </Routes>
       </BrowserRouter>
     </Authcontext.Provider>
